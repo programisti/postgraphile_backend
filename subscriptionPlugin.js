@@ -22,9 +22,7 @@ module.exports = makeExtendSchemaPlugin(({ pgSql: sql }) => ({
     }
 
     extend type Subscription {
-      companyUpdated: CompanySubscriptionPayload @pgSubscription(topic: ${embed(
-        currentUserTopicFromContext
-      )})
+      companyChanged: CompanySubscriptionPayload @pgSubscription(topic: graphql:copmany)
     }
   `,
 
