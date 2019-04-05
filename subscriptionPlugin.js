@@ -1,14 +1,8 @@
 const { makeExtendSchemaPlugin, gql, embed } = require('graphile-utils');
 
 const currentUserTopicFromContext = (_args, context, _resolveInfo) => {
-  console.log('-----------------------------------------------------------')
-  console.log(context)
-  console.log('-----------------------------------------------------------')
-  console.log(_args)
-  console.log('-----------------------------------------------------------')
-  return 'graphql:copmany:19'
   if (context.jwtClaims.user_id) {
-    return `graphql:company:${context.jwtClaims.user_id}`;
+    return `graphql:user:${context.jwtClaims.user_id}`;
   } else {
     throw new Error("You're not logged in");
   }
@@ -22,15 +16,21 @@ module.exports = makeExtendSchemaPlugin(({ pgSql: sql }) => ({
     }
 
     extend type Subscription {
-      companyChanged: CompanySubscriptionPayload @pgSubscription(topic: graphql:copmany)
+      companyUpdated: CompanySubscriptionPayload @pgSubscription(topic: graphql)
     }
   `,
 
   resolvers: {
     CompanySubscriptionPayload: {
+      // This method finds the user from the database based on the event
+      // published by PostgreSQL.
+      //
+      // In a future release, we hope to enable you to replace this entire
+      // method with a small schema directive above, should you so desire. It's
+      // mostly boilerplate.
       async company(event, _args, _context, { graphile: { selectGraphQLResultFromTable } }) {
         const rows = await selectGraphQLResultFromTable(
-          sql.fragment`api.companies`,
+          sql.fragment`api.copmanies`,
           (tableAlias, sqlBuilder) => {
             sqlBuilder.where(
               sql.fragment`${sqlBuilder.getTableAlias()}.id = ${sql.value(
@@ -39,11 +39,6 @@ module.exports = makeExtendSchemaPlugin(({ pgSql: sql }) => ({
             );
           }
         );
-        console.log('===========================================================');
-        console.log('rows', rows);
-        console.log('event', event);
-        console.log('context', context);
-        console.log('===========================================================');
         return rows[0];
       },
     },
