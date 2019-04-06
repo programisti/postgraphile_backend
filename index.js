@@ -1,5 +1,6 @@
 const express = require("express");
 const liveQuery = require("@graphile/subscriptions-lds")
+const cors = require('cors')
 const { postgraphile, makePluginHook } = require("postgraphile");
 const PgSimplifyInflectorPlugin = require("@graphile-contrib/pg-simplify-inflector");
 const ConnectionFilterPlugin = require("postgraphile-plugin-connection-filter");
@@ -7,6 +8,10 @@ const subscriptionPlugin = require("./subscriptionPlugin");
 const { default: PgPubsub } = require("@graphile/pg-pubsub");
 const jwt = require("jsonwebtoken");
 const pluginHook = makePluginHook([PgPubsub]);
+const corsOptions = {
+  origin: ['http://localhost:4000', 'http://localhost:3000'],
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 const app = express();
 const options = {
@@ -32,19 +37,24 @@ const options = {
   simpleCollections: "only",
   ignoreRBAC: false,
   jwtPgTypeIdentifier: 'api.jwt_token',
+  enableCors: true,
   jwtToken: 'api.jwt_token',
   disableQueryLog: true,
   jwtSecret: "mySecret"
 }
 
 app.use(
-  postgraphile('postgres://kodala:postgres@localhost:5432/kodala_dev', ["api"], options)
+  [
+    cors(corsOptions),
+    postgraphile('postgres://kodala:postgres@localhost:5432/kodala_dev', ["api"], options)
+  ]
 );
 
 const getClaims = (req) => {
   try {
     const authHeader = req.headers.authorization;
     if (!authHeader) {
+      return {'q': 's'};
       throw new Error("No authorization header provided.");
     }
 
@@ -64,10 +74,13 @@ const getClaims = (req) => {
     if (decodedToken === null) {
       throw new Error("Unable to decode JWT, refresh login and try again.");
     }
+    console.log(decodedToken.user_id)
     return {
+      'role': decodedToken.role,
       'jwt.claims.user_id': decodedToken.user_id,
     }
   } catch (e) {
+    console.log('error', e)
     e.status = 401; // append a generic 401 Unauthorized header status
     throw e;
   }
