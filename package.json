@@ -11,13 +11,14 @@
   "license": "ISC",
   "dependencies": {
     "@graphile-contrib/pg-simplify-inflector": "^5.0.0-beta.1",
-    "@graphile/pg-pubsub": "^4.4.0-beta.9",
-    "@graphile/subscriptions-lds": "^4.4.0-beta.9",
+    "@graphile/pg-pubsub": "^4.4.0",
+    "@graphile/subscriptions-lds": "^4.4.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
-    "graphile-utils": "^4.4.0-beta.9",
+    "graphile-utils": "^4.4.0",
     "jsonwebtoken": "^8.5.1",
-    "postgraphile": "^4.4.0-beta.9",
-    "postgraphile-plugin-connection-filter": "^1.0.0"
+    "npm-check-updates": "^3.1.9",
+    "postgraphile": "^4.4.0",
+    "postgraphile-plugin-connection-filter": "^1.0.1"
   }
 }
