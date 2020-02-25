@@ -21,7 +21,7 @@ const options = {
   pluginHook,
   live: true,
   defaultRole: "kodala",
-  ownerConnectionString: 'postgres://zaali:postgres@localhost:5432/kodala_dev',
+  ownerConnectionString: 'postgres://ofronrkm:Khyh2XeN5F5RWMyG4jYnusU_mzY-6UO9@raja.db.elephantsql.com:5432/ofronrkm',
   // subscriptions: true,
   appendPlugins: [
     PgSimplifyInflectorPlugin,
@@ -53,7 +53,7 @@ app.use(function (req, res, next) {
 app.use(
   [
     cors(corsOptions),
-    postgraphile('postgres://kodala:postgres@localhost:5432/kodala_dev', ["api"], options)
+    postgraphile('postgres://ofronrkm:Khyh2XeN5F5RWMyG4jYnusU_mzY-6UO9@raja.db.elephantsql.com:5432/ofronrkm', ["api"], options)
   ]
 );
 
