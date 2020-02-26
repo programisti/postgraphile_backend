@@ -8,6 +8,7 @@ const subscriptionPlugin = require("./subscriptionPlugin");
 const { default: PgPubsub } = require("@graphile/pg-pubsub");
 const jwt = require("jsonwebtoken");
 const pluginHook = makePluginHook([PgPubsub]);
+require('dotenv').config();
 const corsOptions = {
   origin: ['http://localhost:4000', 'http://localhost:3000'],
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
@@ -20,8 +21,8 @@ const options = {
   },
   pluginHook,
   live: true,
-  defaultRole: "kodala",
-  ownerConnectionString: 'postgres://zaali:postgres@localhost:5432/kodala_dev',
+  defaultRole: "ofronrkm",
+  ownerConnectionString: process.env.OWNER_URL,
   // subscriptions: true,
   appendPlugins: [
     PgSimplifyInflectorPlugin,
@@ -43,12 +44,20 @@ const options = {
   jwtSecret: "mySecret"
 }
 
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
 app.use(
   [
     cors(corsOptions),
-    postgraphile('postgres://kodala:postgres@localhost:5432/kodala_dev', ["api"], options)
+    postgraphile(process.env.DATABASE_URL, ["api"], options)
   ]
 );
+
 
 const getClaims = (req) => {
   try {

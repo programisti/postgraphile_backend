@@ -3,22 +3,27 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "8.17.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@graphile-contrib/pg-simplify-inflector": "^5.0.0-beta.1",
-    "@graphile/pg-pubsub": "^4.4.0",
-    "@graphile/subscriptions-lds": "^4.4.0",
+    "@graphile/pg-pubsub": "^4.5.0",
+    "@graphile/subscriptions-lds": "^4.5.0",
     "cors": "^2.8.5",
-    "express": "^4.16.4",
-    "graphile-utils": "^4.4.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "graphile-utils": "^4.5.6",
     "jsonwebtoken": "^8.5.1",
-    "npm-check-updates": "^3.1.9",
-    "postgraphile": "^4.4.0",
-    "postgraphile-plugin-connection-filter": "^1.0.1"
+    "npm-check-updates": "^4.0.1",
+    "postgraphile": "^4.5.5",
+    "postgraphile-plugin-connection-filter": "^1.1.3"
   }
 }
