@@ -8,6 +8,7 @@ const subscriptionPlugin = require("./subscriptionPlugin");
 const { default: PgPubsub } = require("@graphile/pg-pubsub");
 const jwt = require("jsonwebtoken");
 const pluginHook = makePluginHook([PgPubsub]);
+require('dotenv').config();
 const corsOptions = {
   origin: ['http://localhost:4000', 'http://localhost:3000'],
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
@@ -20,8 +21,8 @@ const options = {
   },
   pluginHook,
   live: true,
-  defaultRole: "kodala",
-  ownerConnectionString: 'postgres://ofronrkm:Khyh2XeN5F5RWMyG4jYnusU_mzY-6UO9@raja.db.elephantsql.com:5432/ofronrkm',
+  defaultRole: "ofronrkm",
+  ownerConnectionString: process.env.OWNER_URL,
   // subscriptions: true,
   appendPlugins: [
     PgSimplifyInflectorPlugin,
@@ -53,7 +54,7 @@ app.use(function (req, res, next) {
 app.use(
   [
     cors(corsOptions),
-    postgraphile('postgres://ofronrkm:Khyh2XeN5F5RWMyG4jYnusU_mzY-6UO9@raja.db.elephantsql.com:5432/ofronrkm', ["api"], options)
+    postgraphile(process.env.DATABASE_URL, ["api"], options)
   ]
 );
 
