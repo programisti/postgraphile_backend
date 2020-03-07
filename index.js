@@ -20,10 +20,14 @@ const options = {
     getClaims(req)
   },
   pluginHook,
+  // PRODUCTION
+  subscriptions: true,
+  retryOnInitFail: true,
   live: true,
   defaultRole: "ofronrkm",
+  disableDefaultMutations: true,
+  statement_timeout: "3000",
   ownerConnectionString: process.env.OWNER_URL,
-  // subscriptions: true,
   appendPlugins: [
     PgSimplifyInflectorPlugin,
     liveQuery.default,
@@ -34,8 +38,21 @@ const options = {
     pgOmitListSuffix: true,
   },
   graphiql: true,
+  enhanceGraphiql: true,
   watchPg: true,
   simpleCollections: "only",
+  ignoreIndexes: false,
+  dynamicJson: true,
+  setofFunctionsContainNulls: false,
+  showErrorStack: "json",
+  extendedErrors: ["errcode"],
+  exportGqlSchemaPath: "schema.graphql",
+  enableQueryBatching: true,
+  legacyRelations: "omit",
+  allowExplain(req) {
+    // TODO: customise condition!
+    return true;
+  },
   ignoreRBAC: false,
   jwtPgTypeIdentifier: 'api.jwt_token',
   enableCors: true,
