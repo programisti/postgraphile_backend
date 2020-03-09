@@ -1,0 +1,4616 @@
+type ActiveJob {
+  id: UUID
+  title: String
+  text: String
+  session: Int
+  missedClient: Int
+  chatMissTime: Int
+  chatMissFee: Int
+  rate: Int
+  status: String
+  companyId: UUID
+  websiteId: UUID
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""An input for mutations affecting `ActiveJob`"""
+input ActiveJobInput {
+  id: UUID
+  title: String
+  text: String
+  session: Int
+  missedClient: Int
+  chatMissTime: Int
+  chatMissFee: Int
+  rate: Int
+  status: String
+  companyId: UUID
+  websiteId: UUID
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""Methods to use when ordering `ActiveJob`."""
+enum ActiveJobsOrderBy {
+  NATURAL
+}
+
+type Agent implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  name: String
+  rate: BigFloat
+  picture: String
+  session: Int
+  country: String
+  cover: String
+  timeWorked: Int
+  clientFeedback: Int
+  missedClients: Int
+  userId: UUID!
+  insertedAt: Datetime!
+  updatedAt: Datetime!
+}
+
+"""
+A condition to be used against `Agent` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input AgentCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+}
+
+"""
+A filter to be used against `Agent` object types. All fields are combined with a logical ‘and.’
+"""
+input AgentFilter {
+  """Filter by the object’s `id` field."""
+  id: UUIDFilter
+
+  """Checks for all expressions in this list."""
+  and: [AgentFilter!]
+
+  """Checks for any expressions in this list."""
+  or: [AgentFilter!]
+
+  """Negates the expression."""
+  not: AgentFilter
+}
+
+"""An input for mutations affecting `Agent`"""
+input AgentInput {
+  id: UUID
+  name: String
+  rate: BigFloat
+  picture: String
+  session: Int
+  country: String
+  cover: String
+  timeWorked: Int
+  clientFeedback: Int
+  missedClients: Int
+  userId: UUID!
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""
+Represents an update to a `Agent`. Fields that are set will be updated.
+"""
+input AgentPatch {
+  id: UUID
+  name: String
+  rate: BigFloat
+  picture: String
+  session: Int
+  country: String
+  cover: String
+  timeWorked: Int
+  clientFeedback: Int
+  missedClients: Int
+  userId: UUID
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""Methods to use when ordering `Agent`."""
+enum AgentsOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A floating point number that requires more precision than IEEE 754 binary 64
+"""
+scalar BigFloat
+
+"""
+A signed eight-byte integer. The upper big integer values are greater than the
+max value for a JavaScript number. Therefore all big integers will be output as
+strings and not numbers.
+"""
+scalar BigInt
+
+"""
+A filter to be used against BigInt fields. All fields are combined with a logical ‘and.’
+"""
+input BigIntFilter {
+  """
+  Is null (if `true` is specified) or is not null (if `false` is specified).
+  """
+  isNull: Boolean
+
+  """Equal to the specified value."""
+  equalTo: BigInt
+
+  """Not equal to the specified value."""
+  notEqualTo: BigInt
+
+  """
+  Not equal to the specified value, treating null like an ordinary value.
+  """
+  distinctFrom: BigInt
+
+  """Equal to the specified value, treating null like an ordinary value."""
+  notDistinctFrom: BigInt
+
+  """Included in the specified list."""
+  in: [BigInt!]
+
+  """Not included in the specified list."""
+  notIn: [BigInt!]
+
+  """Less than the specified value."""
+  lessThan: BigInt
+
+  """Less than or equal to the specified value."""
+  lessThanOrEqualTo: BigInt
+
+  """Greater than the specified value."""
+  greaterThan: BigInt
+
+  """Greater than or equal to the specified value."""
+  greaterThanOrEqualTo: BigInt
+}
+
+type Chat implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  status: String
+  customerName: String
+  headline: String
+  contractId: UUID!
+  insertedAt: Datetime!
+  updatedAt: Datetime!
+  responsedAt: Datetime
+}
+
+"""
+A condition to be used against `Chat` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input ChatCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+}
+
+"""
+A filter to be used against `Chat` object types. All fields are combined with a logical ‘and.’
+"""
+input ChatFilter {
+  """Filter by the object’s `id` field."""
+  id: UUIDFilter
+
+  """Checks for all expressions in this list."""
+  and: [ChatFilter!]
+
+  """Checks for any expressions in this list."""
+  or: [ChatFilter!]
+
+  """Negates the expression."""
+  not: ChatFilter
+}
+
+"""An input for mutations affecting `Chat`"""
+input ChatInput {
+  id: UUID
+  status: String
+  customerName: String
+  headline: String
+  contractId: UUID!
+  insertedAt: Datetime
+  updatedAt: Datetime
+  responsedAt: Datetime
+}
+
+"""Represents an update to a `Chat`. Fields that are set will be updated."""
+input ChatPatch {
+  id: UUID
+  status: String
+  customerName: String
+  headline: String
+  contractId: UUID
+  insertedAt: Datetime
+  updatedAt: Datetime
+  responsedAt: Datetime
+}
+
+"""Methods to use when ordering `Chat`."""
+enum ChatsOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""Methods to use when ordering `Company`."""
+enum CompaniesOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+type Company implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  name: String
+  userId: UUID!
+  insertedAt: Datetime!
+  updatedAt: Datetime!
+}
+
+"""
+A condition to be used against `Company` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input CompanyCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+}
+
+"""
+A filter to be used against `Company` object types. All fields are combined with a logical ‘and.’
+"""
+input CompanyFilter {
+  """Filter by the object’s `id` field."""
+  id: UUIDFilter
+
+  """Checks for all expressions in this list."""
+  and: [CompanyFilter!]
+
+  """Checks for any expressions in this list."""
+  or: [CompanyFilter!]
+
+  """Negates the expression."""
+  not: CompanyFilter
+}
+
+"""An input for mutations affecting `Company`"""
+input CompanyInput {
+  id: UUID
+  name: String
+  userId: UUID!
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""
+Represents an update to a `Company`. Fields that are set will be updated.
+"""
+input CompanyPatch {
+  id: UUID
+  name: String
+  userId: UUID
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+type Contract implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  name: String
+  color: String
+  rate: BigFloat!
+  status: String
+  session: Int
+  chatMissTime: Int
+  chatMissFee: Int
+  minutesWorked: Int
+  minutesWorkedToday: Int
+  minutesWorkedThisWeek: Int
+  minutesWorkedLastWeek: Int
+  websiteId: UUID!
+  agentId: UUID!
+  jobId: UUID!
+  companyId: UUID!
+  proposalId: UUID!
+  insertedAt: Datetime!
+  updatedAt: Datetime!
+  chatMissed(lastDays: Int): BigInt
+}
+
+"""
+A condition to be used against `Contract` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input ContractCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+}
+
+"""
+A filter to be used against `Contract` object types. All fields are combined with a logical ‘and.’
+"""
+input ContractFilter {
+  """Filter by the object’s `id` field."""
+  id: UUIDFilter
+
+  """Filter by the object’s `chatMissed` field."""
+  chatMissed: BigIntFilter
+
+  """Checks for all expressions in this list."""
+  and: [ContractFilter!]
+
+  """Checks for any expressions in this list."""
+  or: [ContractFilter!]
+
+  """Negates the expression."""
+  not: ContractFilter
+}
+
+"""An input for mutations affecting `Contract`"""
+input ContractInput {
+  id: UUID
+  name: String
+  color: String
+  rate: BigFloat!
+  status: String
+  session: Int
+  chatMissTime: Int
+  chatMissFee: Int
+  minutesWorked: Int
+  minutesWorkedToday: Int
+  minutesWorkedThisWeek: Int
+  minutesWorkedLastWeek: Int
+  websiteId: UUID!
+  agentId: UUID!
+  jobId: UUID!
+  companyId: UUID!
+  proposalId: UUID!
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""
+Represents an update to a `Contract`. Fields that are set will be updated.
+"""
+input ContractPatch {
+  id: UUID
+  name: String
+  color: String
+  rate: BigFloat
+  status: String
+  session: Int
+  chatMissTime: Int
+  chatMissFee: Int
+  minutesWorked: Int
+  minutesWorkedToday: Int
+  minutesWorkedThisWeek: Int
+  minutesWorkedLastWeek: Int
+  websiteId: UUID
+  agentId: UUID
+  jobId: UUID
+  companyId: UUID
+  proposalId: UUID
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""Methods to use when ordering `Contract`."""
+enum ContractsOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+type Conversation implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  companyId: UUID!
+  agentId: UUID!
+  insertedAt: Datetime!
+  updatedAt: Datetime!
+}
+
+"""
+A condition to be used against `Conversation` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input ConversationCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+}
+
+"""
+A filter to be used against `Conversation` object types. All fields are combined with a logical ‘and.’
+"""
+input ConversationFilter {
+  """Filter by the object’s `id` field."""
+  id: UUIDFilter
+
+  """Checks for all expressions in this list."""
+  and: [ConversationFilter!]
+
+  """Checks for any expressions in this list."""
+  or: [ConversationFilter!]
+
+  """Negates the expression."""
+  not: ConversationFilter
+}
+
+"""An input for mutations affecting `Conversation`"""
+input ConversationInput {
+  id: UUID
+  companyId: UUID!
+  agentId: UUID!
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""
+Represents an update to a `Conversation`. Fields that are set will be updated.
+"""
+input ConversationPatch {
+  id: UUID
+  companyId: UUID
+  agentId: UUID
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""Methods to use when ordering `Conversation`."""
+enum ConversationsOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""All input for the create `ActiveJob` mutation."""
+input CreateActiveJobInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `ActiveJob` to be created by this mutation."""
+  activeJob: ActiveJobInput!
+}
+
+"""The output of our create `ActiveJob` mutation."""
+type CreateActiveJobPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `ActiveJob` that was created by this mutation."""
+  activeJob: ActiveJob
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the create `Agent` mutation."""
+input CreateAgentInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Agent` to be created by this mutation."""
+  agent: AgentInput!
+}
+
+"""The output of our create `Agent` mutation."""
+type CreateAgentPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Agent` that was created by this mutation."""
+  agent: Agent
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the create `Chat` mutation."""
+input CreateChatInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Chat` to be created by this mutation."""
+  chat: ChatInput!
+}
+
+"""The output of our create `Chat` mutation."""
+type CreateChatPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Chat` that was created by this mutation."""
+  chat: Chat
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the create `Company` mutation."""
+input CreateCompanyInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Company` to be created by this mutation."""
+  company: CompanyInput!
+}
+
+"""The output of our create `Company` mutation."""
+type CreateCompanyPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Company` that was created by this mutation."""
+  company: Company
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the create `Contract` mutation."""
+input CreateContractInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Contract` to be created by this mutation."""
+  contract: ContractInput!
+}
+
+"""The output of our create `Contract` mutation."""
+type CreateContractPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Contract` that was created by this mutation."""
+  contract: Contract
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the create `Conversation` mutation."""
+input CreateConversationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Conversation` to be created by this mutation."""
+  conversation: ConversationInput!
+}
+
+"""The output of our create `Conversation` mutation."""
+type CreateConversationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Conversation` that was created by this mutation."""
+  conversation: Conversation
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the create `Job` mutation."""
+input CreateJobInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Job` to be created by this mutation."""
+  job: JobInput!
+}
+
+"""The output of our create `Job` mutation."""
+type CreateJobPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Job` that was created by this mutation."""
+  job: Job
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the create `Message` mutation."""
+input CreateMessageInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Message` to be created by this mutation."""
+  message: MessageInput!
+}
+
+"""The output of our create `Message` mutation."""
+type CreateMessagePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Message` that was created by this mutation."""
+  message: Message
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the create `Msg` mutation."""
+input CreateMsgInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Msg` to be created by this mutation."""
+  msg: MsgInput!
+}
+
+"""The output of our create `Msg` mutation."""
+type CreateMsgPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Msg` that was created by this mutation."""
+  msg: Msg
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the create `Payment` mutation."""
+input CreatePaymentInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Payment` to be created by this mutation."""
+  payment: PaymentInput!
+}
+
+"""The output of our create `Payment` mutation."""
+type CreatePaymentPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Payment` that was created by this mutation."""
+  payment: Payment
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the create `PaypalResponse` mutation."""
+input CreatePaypalResponseInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `PaypalResponse` to be created by this mutation."""
+  paypalResponse: PaypalResponseInput!
+}
+
+"""The output of our create `PaypalResponse` mutation."""
+type CreatePaypalResponsePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `PaypalResponse` that was created by this mutation."""
+  paypalResponse: PaypalResponse
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the create `Proposal` mutation."""
+input CreateProposalInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Proposal` to be created by this mutation."""
+  proposal: ProposalInput!
+}
+
+"""The output of our create `Proposal` mutation."""
+type CreateProposalPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Proposal` that was created by this mutation."""
+  proposal: Proposal
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `Job` that is related to this `Proposal`."""
+  job: Job
+}
+
+"""All input for the create `Rate` mutation."""
+input CreateRateInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Rate` to be created by this mutation."""
+  rate: RateInput!
+}
+
+"""The output of our create `Rate` mutation."""
+type CreateRatePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Rate` that was created by this mutation."""
+  rate: Rate
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the create `Timesheet` mutation."""
+input CreateTimesheetInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Timesheet` to be created by this mutation."""
+  timesheet: TimesheetInput!
+}
+
+"""The output of our create `Timesheet` mutation."""
+type CreateTimesheetPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Timesheet` that was created by this mutation."""
+  timesheet: Timesheet
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the create `Website` mutation."""
+input CreateWebsiteInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Website` to be created by this mutation."""
+  website: WebsiteInput!
+}
+
+"""The output of our create `Website` mutation."""
+type CreateWebsitePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Website` that was created by this mutation."""
+  website: Website
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""
+A point in time as described by the [ISO
+8601](https://en.wikipedia.org/wiki/ISO_8601) standard. May or may not include a timezone.
+"""
+scalar Datetime
+
+"""All input for the `deleteAgentByNodeId` mutation."""
+input DeleteAgentByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Agent` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteAgent` mutation."""
+input DeleteAgentInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""The output of our delete `Agent` mutation."""
+type DeleteAgentPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Agent` that was deleted by this mutation."""
+  agent: Agent
+  deletedAgentNodeId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `deleteChatByNodeId` mutation."""
+input DeleteChatByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Chat` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteChat` mutation."""
+input DeleteChatInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""The output of our delete `Chat` mutation."""
+type DeleteChatPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Chat` that was deleted by this mutation."""
+  chat: Chat
+  deletedChatNodeId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `deleteCompanyByNodeId` mutation."""
+input DeleteCompanyByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Company` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteCompany` mutation."""
+input DeleteCompanyInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""The output of our delete `Company` mutation."""
+type DeleteCompanyPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Company` that was deleted by this mutation."""
+  company: Company
+  deletedCompanyNodeId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `deleteContractByNodeId` mutation."""
+input DeleteContractByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Contract` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteContract` mutation."""
+input DeleteContractInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""The output of our delete `Contract` mutation."""
+type DeleteContractPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Contract` that was deleted by this mutation."""
+  contract: Contract
+  deletedContractNodeId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `deleteConversationByNodeId` mutation."""
+input DeleteConversationByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Conversation` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteConversation` mutation."""
+input DeleteConversationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""The output of our delete `Conversation` mutation."""
+type DeleteConversationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Conversation` that was deleted by this mutation."""
+  conversation: Conversation
+  deletedConversationNodeId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `deleteJobByNodeId` mutation."""
+input DeleteJobByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Job` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteJob` mutation."""
+input DeleteJobInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""The output of our delete `Job` mutation."""
+type DeleteJobPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Job` that was deleted by this mutation."""
+  job: Job
+  deletedJobNodeId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `deleteMessageByNodeId` mutation."""
+input DeleteMessageByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Message` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteMessage` mutation."""
+input DeleteMessageInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""The output of our delete `Message` mutation."""
+type DeleteMessagePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Message` that was deleted by this mutation."""
+  message: Message
+  deletedMessageNodeId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `deleteMsgByNodeId` mutation."""
+input DeleteMsgByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Msg` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteMsg` mutation."""
+input DeleteMsgInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""The output of our delete `Msg` mutation."""
+type DeleteMsgPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Msg` that was deleted by this mutation."""
+  msg: Msg
+  deletedMsgNodeId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `deletePaymentByNodeId` mutation."""
+input DeletePaymentByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Payment` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deletePayment` mutation."""
+input DeletePaymentInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""The output of our delete `Payment` mutation."""
+type DeletePaymentPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Payment` that was deleted by this mutation."""
+  payment: Payment
+  deletedPaymentNodeId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `deletePaypalResponseByNodeId` mutation."""
+input DeletePaypalResponseByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `PaypalResponse` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deletePaypalResponse` mutation."""
+input DeletePaypalResponseInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""The output of our delete `PaypalResponse` mutation."""
+type DeletePaypalResponsePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `PaypalResponse` that was deleted by this mutation."""
+  paypalResponse: PaypalResponse
+  deletedPaypalResponseNodeId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `deleteProposalByNodeId` mutation."""
+input DeleteProposalByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Proposal` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteProposal` mutation."""
+input DeleteProposalInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""The output of our delete `Proposal` mutation."""
+type DeleteProposalPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Proposal` that was deleted by this mutation."""
+  proposal: Proposal
+  deletedProposalNodeId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `Job` that is related to this `Proposal`."""
+  job: Job
+}
+
+"""All input for the `deleteRateByNodeId` mutation."""
+input DeleteRateByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Rate` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteRate` mutation."""
+input DeleteRateInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""The output of our delete `Rate` mutation."""
+type DeleteRatePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Rate` that was deleted by this mutation."""
+  rate: Rate
+  deletedRateNodeId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `deleteTimesheetByNodeId` mutation."""
+input DeleteTimesheetByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Timesheet` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteTimesheet` mutation."""
+input DeleteTimesheetInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""The output of our delete `Timesheet` mutation."""
+type DeleteTimesheetPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Timesheet` that was deleted by this mutation."""
+  timesheet: Timesheet
+  deletedTimesheetNodeId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `deleteWebsiteByNodeId` mutation."""
+input DeleteWebsiteByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Website` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteWebsite` mutation."""
+input DeleteWebsiteInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""The output of our delete `Website` mutation."""
+type DeleteWebsitePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Website` that was deleted by this mutation."""
+  website: Website
+  deletedWebsiteNodeId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+type Job implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  title: String
+  text: String
+  session: Int
+  missedClient: Int
+  chatMissTime: Int
+  chatMissFee: Int
+  rate: Int
+  status: String
+  companyId: UUID!
+  websiteId: UUID!
+  insertedAt: Datetime!
+  updatedAt: Datetime!
+
+  """Reads and enables pagination through a set of `Proposal`."""
+  proposals(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Proposal`."""
+    orderBy: [ProposalsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ProposalCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ProposalFilter
+  ): [Proposal!]!
+}
+
+"""
+A condition to be used against `Job` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input JobCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+}
+
+"""
+A filter to be used against `Job` object types. All fields are combined with a logical ‘and.’
+"""
+input JobFilter {
+  """Filter by the object’s `id` field."""
+  id: UUIDFilter
+
+  """Checks for all expressions in this list."""
+  and: [JobFilter!]
+
+  """Checks for any expressions in this list."""
+  or: [JobFilter!]
+
+  """Negates the expression."""
+  not: JobFilter
+}
+
+"""An input for mutations affecting `Job`"""
+input JobInput {
+  id: UUID
+  title: String
+  text: String
+  session: Int
+  missedClient: Int
+  chatMissTime: Int
+  chatMissFee: Int
+  rate: Int
+  status: String
+  companyId: UUID!
+  websiteId: UUID!
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""Represents an update to a `Job`. Fields that are set will be updated."""
+input JobPatch {
+  id: UUID
+  title: String
+  text: String
+  session: Int
+  missedClient: Int
+  chatMissTime: Int
+  chatMissFee: Int
+  rate: Int
+  status: String
+  companyId: UUID
+  websiteId: UUID
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""Methods to use when ordering `Job`."""
+enum JobsOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""
+A JSON Web Token defined by [RFC 7519](https://tools.ietf.org/html/rfc7519)
+which securely represents claims between two parties.
+"""
+scalar JwtToken
+
+"""All input for the `login` mutation."""
+input LoginInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  email: String!
+  password: String!
+}
+
+"""The output of our `login` mutation."""
+type LoginPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+  jwtToken: JwtToken
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+type Message implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  text: String
+  author: String
+  isAgent: Boolean
+  chatId: UUID!
+  insertedAt: Datetime!
+  updatedAt: Datetime!
+}
+
+"""
+A condition to be used against `Message` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input MessageCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+}
+
+"""
+A filter to be used against `Message` object types. All fields are combined with a logical ‘and.’
+"""
+input MessageFilter {
+  """Filter by the object’s `id` field."""
+  id: UUIDFilter
+
+  """Checks for all expressions in this list."""
+  and: [MessageFilter!]
+
+  """Checks for any expressions in this list."""
+  or: [MessageFilter!]
+
+  """Negates the expression."""
+  not: MessageFilter
+}
+
+"""An input for mutations affecting `Message`"""
+input MessageInput {
+  id: UUID
+  text: String
+  author: String
+  isAgent: Boolean
+  chatId: UUID!
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""
+Represents an update to a `Message`. Fields that are set will be updated.
+"""
+input MessagePatch {
+  id: UUID
+  text: String
+  author: String
+  isAgent: Boolean
+  chatId: UUID
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""Methods to use when ordering `Message`."""
+enum MessagesOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+type Msg implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  text: String
+  author: String
+  isAgent: Boolean
+  conversationId: UUID!
+  insertedAt: Datetime!
+  updatedAt: Datetime!
+}
+
+"""
+A condition to be used against `Msg` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input MsgCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+}
+
+"""
+A filter to be used against `Msg` object types. All fields are combined with a logical ‘and.’
+"""
+input MsgFilter {
+  """Filter by the object’s `id` field."""
+  id: UUIDFilter
+
+  """Checks for all expressions in this list."""
+  and: [MsgFilter!]
+
+  """Checks for any expressions in this list."""
+  or: [MsgFilter!]
+
+  """Negates the expression."""
+  not: MsgFilter
+}
+
+"""An input for mutations affecting `Msg`"""
+input MsgInput {
+  id: UUID
+  text: String
+  author: String
+  isAgent: Boolean
+  conversationId: UUID!
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""Represents an update to a `Msg`. Fields that are set will be updated."""
+input MsgPatch {
+  id: UUID
+  text: String
+  author: String
+  isAgent: Boolean
+  conversationId: UUID
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""Methods to use when ordering `Msg`."""
+enum MsgsOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+The root mutation type which contains root level fields which mutate data.
+"""
+type Mutation {
+  """Creates a single `ActiveJob`."""
+  createActiveJob(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateActiveJobInput!
+  ): CreateActiveJobPayload
+
+  """Creates a single `Agent`."""
+  createAgent(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateAgentInput!
+  ): CreateAgentPayload
+
+  """Creates a single `Chat`."""
+  createChat(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateChatInput!
+  ): CreateChatPayload
+
+  """Creates a single `Company`."""
+  createCompany(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateCompanyInput!
+  ): CreateCompanyPayload
+
+  """Creates a single `Contract`."""
+  createContract(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateContractInput!
+  ): CreateContractPayload
+
+  """Creates a single `Conversation`."""
+  createConversation(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateConversationInput!
+  ): CreateConversationPayload
+
+  """Creates a single `Job`."""
+  createJob(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateJobInput!
+  ): CreateJobPayload
+
+  """Creates a single `Message`."""
+  createMessage(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateMessageInput!
+  ): CreateMessagePayload
+
+  """Creates a single `Msg`."""
+  createMsg(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateMsgInput!
+  ): CreateMsgPayload
+
+  """Creates a single `Payment`."""
+  createPayment(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreatePaymentInput!
+  ): CreatePaymentPayload
+
+  """Creates a single `PaypalResponse`."""
+  createPaypalResponse(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreatePaypalResponseInput!
+  ): CreatePaypalResponsePayload
+
+  """Creates a single `Proposal`."""
+  createProposal(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateProposalInput!
+  ): CreateProposalPayload
+
+  """Creates a single `Rate`."""
+  createRate(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateRateInput!
+  ): CreateRatePayload
+
+  """Creates a single `Timesheet`."""
+  createTimesheet(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateTimesheetInput!
+  ): CreateTimesheetPayload
+
+  """Creates a single `Website`."""
+  createWebsite(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateWebsiteInput!
+  ): CreateWebsitePayload
+
+  """Updates a single `Agent` using its globally unique id and a patch."""
+  updateAgentByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateAgentByNodeIdInput!
+  ): UpdateAgentPayload
+
+  """Updates a single `Agent` using a unique key and a patch."""
+  updateAgent(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateAgentInput!
+  ): UpdateAgentPayload
+
+  """Updates a single `Chat` using its globally unique id and a patch."""
+  updateChatByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateChatByNodeIdInput!
+  ): UpdateChatPayload
+
+  """Updates a single `Chat` using a unique key and a patch."""
+  updateChat(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateChatInput!
+  ): UpdateChatPayload
+
+  """Updates a single `Company` using its globally unique id and a patch."""
+  updateCompanyByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateCompanyByNodeIdInput!
+  ): UpdateCompanyPayload
+
+  """Updates a single `Company` using a unique key and a patch."""
+  updateCompany(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateCompanyInput!
+  ): UpdateCompanyPayload
+
+  """Updates a single `Contract` using its globally unique id and a patch."""
+  updateContractByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateContractByNodeIdInput!
+  ): UpdateContractPayload
+
+  """Updates a single `Contract` using a unique key and a patch."""
+  updateContract(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateContractInput!
+  ): UpdateContractPayload
+
+  """
+  Updates a single `Conversation` using its globally unique id and a patch.
+  """
+  updateConversationByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateConversationByNodeIdInput!
+  ): UpdateConversationPayload
+
+  """Updates a single `Conversation` using a unique key and a patch."""
+  updateConversation(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateConversationInput!
+  ): UpdateConversationPayload
+
+  """Updates a single `Job` using its globally unique id and a patch."""
+  updateJobByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateJobByNodeIdInput!
+  ): UpdateJobPayload
+
+  """Updates a single `Job` using a unique key and a patch."""
+  updateJob(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateJobInput!
+  ): UpdateJobPayload
+
+  """Updates a single `Message` using its globally unique id and a patch."""
+  updateMessageByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateMessageByNodeIdInput!
+  ): UpdateMessagePayload
+
+  """Updates a single `Message` using a unique key and a patch."""
+  updateMessage(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateMessageInput!
+  ): UpdateMessagePayload
+
+  """Updates a single `Msg` using its globally unique id and a patch."""
+  updateMsgByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateMsgByNodeIdInput!
+  ): UpdateMsgPayload
+
+  """Updates a single `Msg` using a unique key and a patch."""
+  updateMsg(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateMsgInput!
+  ): UpdateMsgPayload
+
+  """Updates a single `Payment` using its globally unique id and a patch."""
+  updatePaymentByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdatePaymentByNodeIdInput!
+  ): UpdatePaymentPayload
+
+  """Updates a single `Payment` using a unique key and a patch."""
+  updatePayment(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdatePaymentInput!
+  ): UpdatePaymentPayload
+
+  """
+  Updates a single `PaypalResponse` using its globally unique id and a patch.
+  """
+  updatePaypalResponseByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdatePaypalResponseByNodeIdInput!
+  ): UpdatePaypalResponsePayload
+
+  """Updates a single `PaypalResponse` using a unique key and a patch."""
+  updatePaypalResponse(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdatePaypalResponseInput!
+  ): UpdatePaypalResponsePayload
+
+  """Updates a single `Proposal` using its globally unique id and a patch."""
+  updateProposalByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateProposalByNodeIdInput!
+  ): UpdateProposalPayload
+
+  """Updates a single `Proposal` using a unique key and a patch."""
+  updateProposal(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateProposalInput!
+  ): UpdateProposalPayload
+
+  """Updates a single `Rate` using its globally unique id and a patch."""
+  updateRateByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateRateByNodeIdInput!
+  ): UpdateRatePayload
+
+  """Updates a single `Rate` using a unique key and a patch."""
+  updateRate(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateRateInput!
+  ): UpdateRatePayload
+
+  """Updates a single `Timesheet` using its globally unique id and a patch."""
+  updateTimesheetByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateTimesheetByNodeIdInput!
+  ): UpdateTimesheetPayload
+
+  """Updates a single `Timesheet` using a unique key and a patch."""
+  updateTimesheet(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateTimesheetInput!
+  ): UpdateTimesheetPayload
+
+  """Updates a single `Website` using its globally unique id and a patch."""
+  updateWebsiteByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateWebsiteByNodeIdInput!
+  ): UpdateWebsitePayload
+
+  """Updates a single `Website` using a unique key and a patch."""
+  updateWebsite(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateWebsiteInput!
+  ): UpdateWebsitePayload
+
+  """Deletes a single `Agent` using its globally unique id."""
+  deleteAgentByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteAgentByNodeIdInput!
+  ): DeleteAgentPayload
+
+  """Deletes a single `Agent` using a unique key."""
+  deleteAgent(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteAgentInput!
+  ): DeleteAgentPayload
+
+  """Deletes a single `Chat` using its globally unique id."""
+  deleteChatByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteChatByNodeIdInput!
+  ): DeleteChatPayload
+
+  """Deletes a single `Chat` using a unique key."""
+  deleteChat(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteChatInput!
+  ): DeleteChatPayload
+
+  """Deletes a single `Company` using its globally unique id."""
+  deleteCompanyByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteCompanyByNodeIdInput!
+  ): DeleteCompanyPayload
+
+  """Deletes a single `Company` using a unique key."""
+  deleteCompany(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteCompanyInput!
+  ): DeleteCompanyPayload
+
+  """Deletes a single `Contract` using its globally unique id."""
+  deleteContractByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteContractByNodeIdInput!
+  ): DeleteContractPayload
+
+  """Deletes a single `Contract` using a unique key."""
+  deleteContract(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteContractInput!
+  ): DeleteContractPayload
+
+  """Deletes a single `Conversation` using its globally unique id."""
+  deleteConversationByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteConversationByNodeIdInput!
+  ): DeleteConversationPayload
+
+  """Deletes a single `Conversation` using a unique key."""
+  deleteConversation(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteConversationInput!
+  ): DeleteConversationPayload
+
+  """Deletes a single `Job` using its globally unique id."""
+  deleteJobByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteJobByNodeIdInput!
+  ): DeleteJobPayload
+
+  """Deletes a single `Job` using a unique key."""
+  deleteJob(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteJobInput!
+  ): DeleteJobPayload
+
+  """Deletes a single `Message` using its globally unique id."""
+  deleteMessageByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteMessageByNodeIdInput!
+  ): DeleteMessagePayload
+
+  """Deletes a single `Message` using a unique key."""
+  deleteMessage(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteMessageInput!
+  ): DeleteMessagePayload
+
+  """Deletes a single `Msg` using its globally unique id."""
+  deleteMsgByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteMsgByNodeIdInput!
+  ): DeleteMsgPayload
+
+  """Deletes a single `Msg` using a unique key."""
+  deleteMsg(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteMsgInput!
+  ): DeleteMsgPayload
+
+  """Deletes a single `Payment` using its globally unique id."""
+  deletePaymentByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeletePaymentByNodeIdInput!
+  ): DeletePaymentPayload
+
+  """Deletes a single `Payment` using a unique key."""
+  deletePayment(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeletePaymentInput!
+  ): DeletePaymentPayload
+
+  """Deletes a single `PaypalResponse` using its globally unique id."""
+  deletePaypalResponseByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeletePaypalResponseByNodeIdInput!
+  ): DeletePaypalResponsePayload
+
+  """Deletes a single `PaypalResponse` using a unique key."""
+  deletePaypalResponse(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeletePaypalResponseInput!
+  ): DeletePaypalResponsePayload
+
+  """Deletes a single `Proposal` using its globally unique id."""
+  deleteProposalByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteProposalByNodeIdInput!
+  ): DeleteProposalPayload
+
+  """Deletes a single `Proposal` using a unique key."""
+  deleteProposal(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteProposalInput!
+  ): DeleteProposalPayload
+
+  """Deletes a single `Rate` using its globally unique id."""
+  deleteRateByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteRateByNodeIdInput!
+  ): DeleteRatePayload
+
+  """Deletes a single `Rate` using a unique key."""
+  deleteRate(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteRateInput!
+  ): DeleteRatePayload
+
+  """Deletes a single `Timesheet` using its globally unique id."""
+  deleteTimesheetByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteTimesheetByNodeIdInput!
+  ): DeleteTimesheetPayload
+
+  """Deletes a single `Timesheet` using a unique key."""
+  deleteTimesheet(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteTimesheetInput!
+  ): DeleteTimesheetPayload
+
+  """Deletes a single `Website` using its globally unique id."""
+  deleteWebsiteByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteWebsiteByNodeIdInput!
+  ): DeleteWebsitePayload
+
+  """Deletes a single `Website` using a unique key."""
+  deleteWebsite(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteWebsiteInput!
+  ): DeleteWebsitePayload
+  login(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: LoginInput!
+  ): LoginPayload
+  signupAgent(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: SignupAgentInput!
+  ): SignupAgentPayload
+  signupCompany(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: SignupCompanyInput!
+  ): SignupCompanyPayload
+}
+
+"""An object with a globally unique `ID`."""
+interface Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+}
+
+type Payment implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  paid: Boolean
+  amount: BigFloat
+  contractId: UUID!
+  insertedAt: Datetime!
+  updatedAt: Datetime!
+}
+
+"""
+A condition to be used against `Payment` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input PaymentCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+}
+
+"""
+A filter to be used against `Payment` object types. All fields are combined with a logical ‘and.’
+"""
+input PaymentFilter {
+  """Filter by the object’s `id` field."""
+  id: UUIDFilter
+
+  """Checks for all expressions in this list."""
+  and: [PaymentFilter!]
+
+  """Checks for any expressions in this list."""
+  or: [PaymentFilter!]
+
+  """Negates the expression."""
+  not: PaymentFilter
+}
+
+"""An input for mutations affecting `Payment`"""
+input PaymentInput {
+  id: UUID
+  paid: Boolean
+  amount: BigFloat
+  contractId: UUID!
+  insertedAt: Datetime!
+  updatedAt: Datetime!
+}
+
+"""
+Represents an update to a `Payment`. Fields that are set will be updated.
+"""
+input PaymentPatch {
+  id: UUID
+  paid: Boolean
+  amount: BigFloat
+  contractId: UUID
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""Methods to use when ordering `Payment`."""
+enum PaymentsOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+type PaypalResponse implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  json: JSON
+  amount: BigFloat
+  paymentId: UUID!
+  insertedAt: Datetime!
+  updatedAt: Datetime!
+}
+
+"""
+A condition to be used against `PaypalResponse` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input PaypalResponseCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+}
+
+"""
+A filter to be used against `PaypalResponse` object types. All fields are combined with a logical ‘and.’
+"""
+input PaypalResponseFilter {
+  """Filter by the object’s `id` field."""
+  id: UUIDFilter
+
+  """Checks for all expressions in this list."""
+  and: [PaypalResponseFilter!]
+
+  """Checks for any expressions in this list."""
+  or: [PaypalResponseFilter!]
+
+  """Negates the expression."""
+  not: PaypalResponseFilter
+}
+
+"""An input for mutations affecting `PaypalResponse`"""
+input PaypalResponseInput {
+  id: UUID
+  json: JSON
+  amount: BigFloat
+  paymentId: UUID!
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""
+Represents an update to a `PaypalResponse`. Fields that are set will be updated.
+"""
+input PaypalResponsePatch {
+  id: UUID
+  json: JSON
+  amount: BigFloat
+  paymentId: UUID
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""Methods to use when ordering `PaypalResponse`."""
+enum PaypalResponsesOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+type Proposal implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  cover: String
+  rate: BigFloat
+  agentId: UUID!
+  jobId: UUID!
+  insertedAt: Datetime!
+  updatedAt: Datetime!
+
+  """Reads a single `Job` that is related to this `Proposal`."""
+  job: Job
+}
+
+"""
+A condition to be used against `Proposal` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input ProposalCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+
+  """Checks for equality with the object’s `jobId` field."""
+  jobId: UUID
+}
+
+"""
+A filter to be used against `Proposal` object types. All fields are combined with a logical ‘and.’
+"""
+input ProposalFilter {
+  """Filter by the object’s `id` field."""
+  id: UUIDFilter
+
+  """Filter by the object’s `jobId` field."""
+  jobId: UUIDFilter
+
+  """Checks for all expressions in this list."""
+  and: [ProposalFilter!]
+
+  """Checks for any expressions in this list."""
+  or: [ProposalFilter!]
+
+  """Negates the expression."""
+  not: ProposalFilter
+}
+
+"""An input for mutations affecting `Proposal`"""
+input ProposalInput {
+  id: UUID
+  cover: String
+  rate: BigFloat
+  agentId: UUID!
+  jobId: UUID!
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""
+Represents an update to a `Proposal`. Fields that are set will be updated.
+"""
+input ProposalPatch {
+  id: UUID
+  cover: String
+  rate: BigFloat
+  agentId: UUID
+  jobId: UUID
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""Methods to use when ordering `Proposal`."""
+enum ProposalsOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  JOB_ID_ASC
+  JOB_ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""The root query type which gives access points into the data universe."""
+type Query implements Node {
+  """
+  Exposes the root query type nested one level down. This is helpful for Relay 1
+  which can only query top level fields if they are in a particular form.
+  """
+  query: Query!
+
+  """
+  The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`.
+  """
+  nodeId: ID!
+
+  """Fetches an object given its globally unique `ID`."""
+  node(
+    """The globally unique `ID`."""
+    nodeId: ID!
+  ): Node
+
+  """Reads a set of `ActiveJob`."""
+  activeJobs(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `ActiveJob`."""
+    orderBy: [ActiveJobsOrderBy!]
+  ): [ActiveJob!]
+
+  """Reads a set of `Agent`."""
+  agents(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Agent`."""
+    orderBy: [AgentsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: AgentCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: AgentFilter
+  ): [Agent!]
+
+  """Reads a set of `Chat`."""
+  chats(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Chat`."""
+    orderBy: [ChatsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ChatCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ChatFilter
+  ): [Chat!]
+
+  """Reads a set of `Company`."""
+  companies(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Company`."""
+    orderBy: [CompaniesOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CompanyCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: CompanyFilter
+  ): [Company!]
+
+  """Reads a set of `Contract`."""
+  contracts(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Contract`."""
+    orderBy: [ContractsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ContractCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ContractFilter
+  ): [Contract!]
+
+  """Reads a set of `Conversation`."""
+  conversations(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Conversation`."""
+    orderBy: [ConversationsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ConversationCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ConversationFilter
+  ): [Conversation!]
+
+  """Reads a set of `Job`."""
+  jobs(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Job`."""
+    orderBy: [JobsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: JobCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: JobFilter
+  ): [Job!]
+
+  """Reads a set of `Message`."""
+  messages(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Message`."""
+    orderBy: [MessagesOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: MessageCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: MessageFilter
+  ): [Message!]
+
+  """Reads a set of `Msg`."""
+  msgs(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Msg`."""
+    orderBy: [MsgsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: MsgCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: MsgFilter
+  ): [Msg!]
+
+  """Reads a set of `Payment`."""
+  payments(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Payment`."""
+    orderBy: [PaymentsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: PaymentCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: PaymentFilter
+  ): [Payment!]
+
+  """Reads a set of `PaypalResponse`."""
+  paypalResponses(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `PaypalResponse`."""
+    orderBy: [PaypalResponsesOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: PaypalResponseCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: PaypalResponseFilter
+  ): [PaypalResponse!]
+
+  """Reads a set of `Proposal`."""
+  proposals(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Proposal`."""
+    orderBy: [ProposalsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ProposalCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ProposalFilter
+  ): [Proposal!]
+
+  """Reads a set of `Rate`."""
+  rates(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Rate`."""
+    orderBy: [RatesOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: RateCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: RateFilter
+  ): [Rate!]
+
+  """Reads a set of `Timesheet`."""
+  timesheets(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Timesheet`."""
+    orderBy: [TimesheetsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: TimesheetCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: TimesheetFilter
+  ): [Timesheet!]
+
+  """Reads a set of `Website`."""
+  websites(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Website`."""
+    orderBy: [WebsitesOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: WebsiteCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: WebsiteFilter
+  ): [Website!]
+  agent(id: UUID!): Agent
+  chat(id: UUID!): Chat
+  company(id: UUID!): Company
+  contract(id: UUID!): Contract
+  conversation(id: UUID!): Conversation
+  job(id: UUID!): Job
+  message(id: UUID!): Message
+  msg(id: UUID!): Msg
+  payment(id: UUID!): Payment
+  paypalResponse(id: UUID!): PaypalResponse
+  proposal(id: UUID!): Proposal
+  rate(id: UUID!): Rate
+  timesheet(id: UUID!): Timesheet
+  website(id: UUID!): Website
+
+  """gets current user ID"""
+  currentUserId: UUID
+  searchJob(keyword: String, rategt: Int, ratelt: Int, session: Int): Job
+
+  """Reads a single `Agent` using its globally unique `ID`."""
+  agentByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Agent`."""
+    nodeId: ID!
+  ): Agent
+
+  """Reads a single `Chat` using its globally unique `ID`."""
+  chatByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Chat`."""
+    nodeId: ID!
+  ): Chat
+
+  """Reads a single `Company` using its globally unique `ID`."""
+  companyByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Company`."""
+    nodeId: ID!
+  ): Company
+
+  """Reads a single `Contract` using its globally unique `ID`."""
+  contractByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Contract`."""
+    nodeId: ID!
+  ): Contract
+
+  """Reads a single `Conversation` using its globally unique `ID`."""
+  conversationByNodeId(
+    """
+    The globally unique `ID` to be used in selecting a single `Conversation`.
+    """
+    nodeId: ID!
+  ): Conversation
+
+  """Reads a single `Job` using its globally unique `ID`."""
+  jobByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Job`."""
+    nodeId: ID!
+  ): Job
+
+  """Reads a single `Message` using its globally unique `ID`."""
+  messageByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Message`."""
+    nodeId: ID!
+  ): Message
+
+  """Reads a single `Msg` using its globally unique `ID`."""
+  msgByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Msg`."""
+    nodeId: ID!
+  ): Msg
+
+  """Reads a single `Payment` using its globally unique `ID`."""
+  paymentByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Payment`."""
+    nodeId: ID!
+  ): Payment
+
+  """Reads a single `PaypalResponse` using its globally unique `ID`."""
+  paypalResponseByNodeId(
+    """
+    The globally unique `ID` to be used in selecting a single `PaypalResponse`.
+    """
+    nodeId: ID!
+  ): PaypalResponse
+
+  """Reads a single `Proposal` using its globally unique `ID`."""
+  proposalByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Proposal`."""
+    nodeId: ID!
+  ): Proposal
+
+  """Reads a single `Rate` using its globally unique `ID`."""
+  rateByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Rate`."""
+    nodeId: ID!
+  ): Rate
+
+  """Reads a single `Timesheet` using its globally unique `ID`."""
+  timesheetByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Timesheet`."""
+    nodeId: ID!
+  ): Timesheet
+
+  """Reads a single `Website` using its globally unique `ID`."""
+  websiteByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Website`."""
+    nodeId: ID!
+  ): Website
+}
+
+type Rate implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  rating: Int
+  chatId: UUID!
+  insertedAt: Datetime!
+  updatedAt: Datetime!
+}
+
+"""
+A condition to be used against `Rate` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input RateCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+}
+
+"""
+A filter to be used against `Rate` object types. All fields are combined with a logical ‘and.’
+"""
+input RateFilter {
+  """Filter by the object’s `id` field."""
+  id: UUIDFilter
+
+  """Checks for all expressions in this list."""
+  and: [RateFilter!]
+
+  """Checks for any expressions in this list."""
+  or: [RateFilter!]
+
+  """Negates the expression."""
+  not: RateFilter
+}
+
+"""An input for mutations affecting `Rate`"""
+input RateInput {
+  id: UUID
+  rating: Int
+  chatId: UUID!
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""Represents an update to a `Rate`. Fields that are set will be updated."""
+input RatePatch {
+  id: UUID
+  rating: Int
+  chatId: UUID
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""Methods to use when ordering `Rate`."""
+enum RatesOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""All input for the `signupAgent` mutation."""
+input SignupAgentInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  name: String!
+  cover: String!
+  rate: Float!
+  country: String!
+  session: Int!
+  email: String!
+  password: String!
+}
+
+"""The output of our `signupAgent` mutation."""
+type SignupAgentPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+  agent: Agent
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `signupCompany` mutation."""
+input SignupCompanyInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  name: String!
+  address: String!
+  email: String!
+  password: String!
+}
+
+"""The output of our `signupCompany` mutation."""
+type SignupCompanyPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+  company: Company
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""
+The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+
+#### Live Queries
+
+Live query fields are differentiated by containing `(live)` at the end of their
+description, they are added for each field in the `Query` type. When you
+subscribe to a live query field, the selection set will be evaluated and sent to
+the client, and then most things\* that would cause the output of the selection
+set to change will trigger the selection set to be re-evaluated and the results
+to be re-sent to the client.
+
+_(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+
+Live queries can be very expensive, so try and keep them small and focussed.
+
+#### Events
+
+Event fields will run their selection set when, and only when, the specified
+server-side event occurs. This makes them a lot more efficient than Live
+Queries, but it is still recommended that you keep payloads fairly small.
+"""
+type Subscription {
+  """
+  Exposes the root query type nested one level down. This is helpful for Relay 1
+  which can only query top level fields if they are in a particular form. (live)
+  """
+  query: Query!
+
+  """
+  The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`. (live)
+  """
+  nodeId: ID!
+
+  """Fetches an object given its globally unique `ID`. (live)"""
+  node(
+    """The globally unique `ID`."""
+    nodeId: ID!
+  ): Node
+
+  """Reads a set of `ActiveJob`. (live)"""
+  activeJobs(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `ActiveJob`."""
+    orderBy: [ActiveJobsOrderBy!]
+  ): [ActiveJob!]
+
+  """Reads a set of `Agent`. (live)"""
+  agents(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Agent`."""
+    orderBy: [AgentsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: AgentCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: AgentFilter
+  ): [Agent!]
+
+  """Reads a set of `Chat`. (live)"""
+  chats(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Chat`."""
+    orderBy: [ChatsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ChatCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ChatFilter
+  ): [Chat!]
+
+  """Reads a set of `Company`. (live)"""
+  companies(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Company`."""
+    orderBy: [CompaniesOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CompanyCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: CompanyFilter
+  ): [Company!]
+
+  """Reads a set of `Contract`. (live)"""
+  contracts(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Contract`."""
+    orderBy: [ContractsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ContractCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ContractFilter
+  ): [Contract!]
+
+  """Reads a set of `Conversation`. (live)"""
+  conversations(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Conversation`."""
+    orderBy: [ConversationsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ConversationCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ConversationFilter
+  ): [Conversation!]
+
+  """Reads a set of `Job`. (live)"""
+  jobs(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Job`."""
+    orderBy: [JobsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: JobCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: JobFilter
+  ): [Job!]
+
+  """Reads a set of `Message`. (live)"""
+  messages(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Message`."""
+    orderBy: [MessagesOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: MessageCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: MessageFilter
+  ): [Message!]
+
+  """Reads a set of `Msg`. (live)"""
+  msgs(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Msg`."""
+    orderBy: [MsgsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: MsgCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: MsgFilter
+  ): [Msg!]
+
+  """Reads a set of `Payment`. (live)"""
+  payments(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Payment`."""
+    orderBy: [PaymentsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: PaymentCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: PaymentFilter
+  ): [Payment!]
+
+  """Reads a set of `PaypalResponse`. (live)"""
+  paypalResponses(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `PaypalResponse`."""
+    orderBy: [PaypalResponsesOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: PaypalResponseCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: PaypalResponseFilter
+  ): [PaypalResponse!]
+
+  """Reads a set of `Proposal`. (live)"""
+  proposals(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Proposal`."""
+    orderBy: [ProposalsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ProposalCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ProposalFilter
+  ): [Proposal!]
+
+  """Reads a set of `Rate`. (live)"""
+  rates(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Rate`."""
+    orderBy: [RatesOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: RateCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: RateFilter
+  ): [Rate!]
+
+  """Reads a set of `Timesheet`. (live)"""
+  timesheets(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Timesheet`."""
+    orderBy: [TimesheetsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: TimesheetCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: TimesheetFilter
+  ): [Timesheet!]
+
+  """Reads a set of `Website`. (live)"""
+  websites(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Website`."""
+    orderBy: [WebsitesOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: WebsiteCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: WebsiteFilter
+  ): [Website!]
+
+  """ (live)"""
+  agent(id: UUID!): Agent
+
+  """ (live)"""
+  chat(id: UUID!): Chat
+
+  """ (live)"""
+  company(id: UUID!): Company
+
+  """ (live)"""
+  contract(id: UUID!): Contract
+
+  """ (live)"""
+  conversation(id: UUID!): Conversation
+
+  """ (live)"""
+  job(id: UUID!): Job
+
+  """ (live)"""
+  message(id: UUID!): Message
+
+  """ (live)"""
+  msg(id: UUID!): Msg
+
+  """ (live)"""
+  payment(id: UUID!): Payment
+
+  """ (live)"""
+  paypalResponse(id: UUID!): PaypalResponse
+
+  """ (live)"""
+  proposal(id: UUID!): Proposal
+
+  """ (live)"""
+  rate(id: UUID!): Rate
+
+  """ (live)"""
+  timesheet(id: UUID!): Timesheet
+
+  """ (live)"""
+  website(id: UUID!): Website
+
+  """gets current user ID (live)"""
+  currentUserId: UUID
+
+  """ (live)"""
+  searchJob(keyword: String, rategt: Int, ratelt: Int, session: Int): Job
+
+  """Reads a single `Agent` using its globally unique `ID`. (live)"""
+  agentByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Agent`."""
+    nodeId: ID!
+  ): Agent
+
+  """Reads a single `Chat` using its globally unique `ID`. (live)"""
+  chatByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Chat`."""
+    nodeId: ID!
+  ): Chat
+
+  """Reads a single `Company` using its globally unique `ID`. (live)"""
+  companyByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Company`."""
+    nodeId: ID!
+  ): Company
+
+  """Reads a single `Contract` using its globally unique `ID`. (live)"""
+  contractByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Contract`."""
+    nodeId: ID!
+  ): Contract
+
+  """Reads a single `Conversation` using its globally unique `ID`. (live)"""
+  conversationByNodeId(
+    """
+    The globally unique `ID` to be used in selecting a single `Conversation`.
+    """
+    nodeId: ID!
+  ): Conversation
+
+  """Reads a single `Job` using its globally unique `ID`. (live)"""
+  jobByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Job`."""
+    nodeId: ID!
+  ): Job
+
+  """Reads a single `Message` using its globally unique `ID`. (live)"""
+  messageByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Message`."""
+    nodeId: ID!
+  ): Message
+
+  """Reads a single `Msg` using its globally unique `ID`. (live)"""
+  msgByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Msg`."""
+    nodeId: ID!
+  ): Msg
+
+  """Reads a single `Payment` using its globally unique `ID`. (live)"""
+  paymentByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Payment`."""
+    nodeId: ID!
+  ): Payment
+
+  """Reads a single `PaypalResponse` using its globally unique `ID`. (live)"""
+  paypalResponseByNodeId(
+    """
+    The globally unique `ID` to be used in selecting a single `PaypalResponse`.
+    """
+    nodeId: ID!
+  ): PaypalResponse
+
+  """Reads a single `Proposal` using its globally unique `ID`. (live)"""
+  proposalByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Proposal`."""
+    nodeId: ID!
+  ): Proposal
+
+  """Reads a single `Rate` using its globally unique `ID`. (live)"""
+  rateByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Rate`."""
+    nodeId: ID!
+  ): Rate
+
+  """Reads a single `Timesheet` using its globally unique `ID`. (live)"""
+  timesheetByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Timesheet`."""
+    nodeId: ID!
+  ): Timesheet
+
+  """Reads a single `Website` using its globally unique `ID`. (live)"""
+  websiteByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Website`."""
+    nodeId: ID!
+  ): Website
+}
+
+type Timesheet implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  minutesTracked: Int
+  contractId: UUID!
+  insertedAt: Datetime!
+  updatedAt: Datetime!
+}
+
+"""
+A condition to be used against `Timesheet` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input TimesheetCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+}
+
+"""
+A filter to be used against `Timesheet` object types. All fields are combined with a logical ‘and.’
+"""
+input TimesheetFilter {
+  """Filter by the object’s `id` field."""
+  id: UUIDFilter
+
+  """Checks for all expressions in this list."""
+  and: [TimesheetFilter!]
+
+  """Checks for any expressions in this list."""
+  or: [TimesheetFilter!]
+
+  """Negates the expression."""
+  not: TimesheetFilter
+}
+
+"""An input for mutations affecting `Timesheet`"""
+input TimesheetInput {
+  id: UUID
+  minutesTracked: Int
+  contractId: UUID!
+  insertedAt: Datetime!
+  updatedAt: Datetime!
+}
+
+"""
+Represents an update to a `Timesheet`. Fields that are set will be updated.
+"""
+input TimesheetPatch {
+  id: UUID
+  minutesTracked: Int
+  contractId: UUID
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""Methods to use when ordering `Timesheet`."""
+enum TimesheetsOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""All input for the `updateAgentByNodeId` mutation."""
+input UpdateAgentByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Agent` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `Agent` being updated.
+  """
+  patch: AgentPatch!
+}
+
+"""All input for the `updateAgent` mutation."""
+input UpdateAgentInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Agent` being updated.
+  """
+  patch: AgentPatch!
+  id: UUID!
+}
+
+"""The output of our update `Agent` mutation."""
+type UpdateAgentPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Agent` that was updated by this mutation."""
+  agent: Agent
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `updateChatByNodeId` mutation."""
+input UpdateChatByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Chat` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `Chat` being updated.
+  """
+  patch: ChatPatch!
+}
+
+"""All input for the `updateChat` mutation."""
+input UpdateChatInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Chat` being updated.
+  """
+  patch: ChatPatch!
+  id: UUID!
+}
+
+"""The output of our update `Chat` mutation."""
+type UpdateChatPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Chat` that was updated by this mutation."""
+  chat: Chat
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `updateCompanyByNodeId` mutation."""
+input UpdateCompanyByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Company` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `Company` being updated.
+  """
+  patch: CompanyPatch!
+}
+
+"""All input for the `updateCompany` mutation."""
+input UpdateCompanyInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Company` being updated.
+  """
+  patch: CompanyPatch!
+  id: UUID!
+}
+
+"""The output of our update `Company` mutation."""
+type UpdateCompanyPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Company` that was updated by this mutation."""
+  company: Company
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `updateContractByNodeId` mutation."""
+input UpdateContractByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Contract` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `Contract` being updated.
+  """
+  patch: ContractPatch!
+}
+
+"""All input for the `updateContract` mutation."""
+input UpdateContractInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Contract` being updated.
+  """
+  patch: ContractPatch!
+  id: UUID!
+}
+
+"""The output of our update `Contract` mutation."""
+type UpdateContractPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Contract` that was updated by this mutation."""
+  contract: Contract
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `updateConversationByNodeId` mutation."""
+input UpdateConversationByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Conversation` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `Conversation` being updated.
+  """
+  patch: ConversationPatch!
+}
+
+"""All input for the `updateConversation` mutation."""
+input UpdateConversationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Conversation` being updated.
+  """
+  patch: ConversationPatch!
+  id: UUID!
+}
+
+"""The output of our update `Conversation` mutation."""
+type UpdateConversationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Conversation` that was updated by this mutation."""
+  conversation: Conversation
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `updateJobByNodeId` mutation."""
+input UpdateJobByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Job` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `Job` being updated.
+  """
+  patch: JobPatch!
+}
+
+"""All input for the `updateJob` mutation."""
+input UpdateJobInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Job` being updated.
+  """
+  patch: JobPatch!
+  id: UUID!
+}
+
+"""The output of our update `Job` mutation."""
+type UpdateJobPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Job` that was updated by this mutation."""
+  job: Job
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `updateMessageByNodeId` mutation."""
+input UpdateMessageByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Message` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `Message` being updated.
+  """
+  patch: MessagePatch!
+}
+
+"""All input for the `updateMessage` mutation."""
+input UpdateMessageInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Message` being updated.
+  """
+  patch: MessagePatch!
+  id: UUID!
+}
+
+"""The output of our update `Message` mutation."""
+type UpdateMessagePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Message` that was updated by this mutation."""
+  message: Message
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `updateMsgByNodeId` mutation."""
+input UpdateMsgByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Msg` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `Msg` being updated.
+  """
+  patch: MsgPatch!
+}
+
+"""All input for the `updateMsg` mutation."""
+input UpdateMsgInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Msg` being updated.
+  """
+  patch: MsgPatch!
+  id: UUID!
+}
+
+"""The output of our update `Msg` mutation."""
+type UpdateMsgPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Msg` that was updated by this mutation."""
+  msg: Msg
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `updatePaymentByNodeId` mutation."""
+input UpdatePaymentByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Payment` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `Payment` being updated.
+  """
+  patch: PaymentPatch!
+}
+
+"""All input for the `updatePayment` mutation."""
+input UpdatePaymentInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Payment` being updated.
+  """
+  patch: PaymentPatch!
+  id: UUID!
+}
+
+"""The output of our update `Payment` mutation."""
+type UpdatePaymentPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Payment` that was updated by this mutation."""
+  payment: Payment
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `updatePaypalResponseByNodeId` mutation."""
+input UpdatePaypalResponseByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `PaypalResponse` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `PaypalResponse` being updated.
+  """
+  patch: PaypalResponsePatch!
+}
+
+"""All input for the `updatePaypalResponse` mutation."""
+input UpdatePaypalResponseInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `PaypalResponse` being updated.
+  """
+  patch: PaypalResponsePatch!
+  id: UUID!
+}
+
+"""The output of our update `PaypalResponse` mutation."""
+type UpdatePaypalResponsePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `PaypalResponse` that was updated by this mutation."""
+  paypalResponse: PaypalResponse
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `updateProposalByNodeId` mutation."""
+input UpdateProposalByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Proposal` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `Proposal` being updated.
+  """
+  patch: ProposalPatch!
+}
+
+"""All input for the `updateProposal` mutation."""
+input UpdateProposalInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Proposal` being updated.
+  """
+  patch: ProposalPatch!
+  id: UUID!
+}
+
+"""The output of our update `Proposal` mutation."""
+type UpdateProposalPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Proposal` that was updated by this mutation."""
+  proposal: Proposal
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `Job` that is related to this `Proposal`."""
+  job: Job
+}
+
+"""All input for the `updateRateByNodeId` mutation."""
+input UpdateRateByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Rate` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `Rate` being updated.
+  """
+  patch: RatePatch!
+}
+
+"""All input for the `updateRate` mutation."""
+input UpdateRateInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Rate` being updated.
+  """
+  patch: RatePatch!
+  id: UUID!
+}
+
+"""The output of our update `Rate` mutation."""
+type UpdateRatePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Rate` that was updated by this mutation."""
+  rate: Rate
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `updateTimesheetByNodeId` mutation."""
+input UpdateTimesheetByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Timesheet` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `Timesheet` being updated.
+  """
+  patch: TimesheetPatch!
+}
+
+"""All input for the `updateTimesheet` mutation."""
+input UpdateTimesheetInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Timesheet` being updated.
+  """
+  patch: TimesheetPatch!
+  id: UUID!
+}
+
+"""The output of our update `Timesheet` mutation."""
+type UpdateTimesheetPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Timesheet` that was updated by this mutation."""
+  timesheet: Timesheet
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `updateWebsiteByNodeId` mutation."""
+input UpdateWebsiteByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Website` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `Website` being updated.
+  """
+  patch: WebsitePatch!
+}
+
+"""All input for the `updateWebsite` mutation."""
+input UpdateWebsiteInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Website` being updated.
+  """
+  patch: WebsitePatch!
+  id: UUID!
+}
+
+"""The output of our update `Website` mutation."""
+type UpdateWebsitePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Website` that was updated by this mutation."""
+  website: Website
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""
+A universally unique identifier as defined by [RFC 4122](https://tools.ietf.org/html/rfc4122).
+"""
+scalar UUID
+
+"""
+A filter to be used against UUID fields. All fields are combined with a logical ‘and.’
+"""
+input UUIDFilter {
+  """
+  Is null (if `true` is specified) or is not null (if `false` is specified).
+  """
+  isNull: Boolean
+
+  """Equal to the specified value."""
+  equalTo: UUID
+
+  """Not equal to the specified value."""
+  notEqualTo: UUID
+
+  """
+  Not equal to the specified value, treating null like an ordinary value.
+  """
+  distinctFrom: UUID
+
+  """Equal to the specified value, treating null like an ordinary value."""
+  notDistinctFrom: UUID
+
+  """Included in the specified list."""
+  in: [UUID!]
+
+  """Not included in the specified list."""
+  notIn: [UUID!]
+
+  """Less than the specified value."""
+  lessThan: UUID
+
+  """Less than or equal to the specified value."""
+  lessThanOrEqualTo: UUID
+
+  """Greater than the specified value."""
+  greaterThan: UUID
+
+  """Greater than or equal to the specified value."""
+  greaterThanOrEqualTo: UUID
+}
+
+type Website implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  name: String
+  address: String
+  companyId: UUID!
+  insertedAt: Datetime!
+  updatedAt: Datetime!
+}
+
+"""
+A condition to be used against `Website` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input WebsiteCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+}
+
+"""
+A filter to be used against `Website` object types. All fields are combined with a logical ‘and.’
+"""
+input WebsiteFilter {
+  """Filter by the object’s `id` field."""
+  id: UUIDFilter
+
+  """Checks for all expressions in this list."""
+  and: [WebsiteFilter!]
+
+  """Checks for any expressions in this list."""
+  or: [WebsiteFilter!]
+
+  """Negates the expression."""
+  not: WebsiteFilter
+}
+
+"""An input for mutations affecting `Website`"""
+input WebsiteInput {
+  id: UUID
+  name: String
+  address: String
+  companyId: UUID!
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""
+Represents an update to a `Website`. Fields that are set will be updated.
+"""
+input WebsitePatch {
+  id: UUID
+  name: String
+  address: String
+  companyId: UUID
+  insertedAt: Datetime
+  updatedAt: Datetime
+}
+
+"""Methods to use when ordering `Website`."""
+enum WebsitesOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
