@@ -21,7 +21,7 @@ const options = {
   },
   pluginHook,
   live: true,
-  defaultRole: "ofronrkm",
+  defaultRole: "guest",
   ownerConnectionString: process.env.OWNER_URL,
   // subscriptions: true,
   appendPlugins: [
